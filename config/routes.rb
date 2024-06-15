@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  resources :channels do
+    resource :channel_user
+  end
+
   devise_for :users
-  root 'home#index'
+  root 'channels#index'
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

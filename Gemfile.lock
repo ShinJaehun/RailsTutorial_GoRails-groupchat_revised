@@ -109,6 +109,14 @@ GEM
     drb (2.2.1)
     erubi (1.13.0)
     execjs (2.9.1)
+    ffi (1.17.0-aarch64-linux-gnu)
+    ffi (1.17.0-arm-linux-gnu)
+    ffi (1.17.0-arm64-darwin)
+    ffi (1.17.0-x86-linux-gnu)
+    ffi (1.17.0-x86_64-darwin)
+    ffi (1.17.0-x86_64-linux-gnu)
+    font-awesome-sass (6.5.2)
+      sassc (~> 2.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     google-protobuf (4.27.1)
@@ -249,6 +257,8 @@ GEM
       google-protobuf (>= 3.25, < 5.0)
     sass-embedded (1.77.5-x86_64-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     sassc-embedded (1.76.0)
       sass-embedded (~> 1.76)
     sprockets (4.2.1)
@@ -303,6 +313,7 @@ DEPENDENCIES
   dartsass-sprockets
   debug
   devise
+  font-awesome-sass
   importmap-rails
   jbuilder
   jquery-rails
