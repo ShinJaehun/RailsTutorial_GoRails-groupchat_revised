@@ -40,6 +40,7 @@ gem 'dartsass-sprockets'
 gem 'jquery-rails'
 gem 'devise'
 gem 'font-awesome-sass'
+gem 'rails_db'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]

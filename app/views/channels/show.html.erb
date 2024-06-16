@@ -1,6 +1,4 @@
-<p style="color: green"><%= notice %></p>
-
-<div class="row">
+<div class="row" data-controller="channel" data-channel-id=<%= @channel.id %>>
   <div class="col-sm-2">
     <div class="d-flex justify-content-between">
       <h6>Channels</h6>
@@ -30,7 +28,13 @@
   </div>
 
   <div class="col-sm-10">
+    <div data-channel-target="messages">
+      <%= render @channel.messages %>
+    </div>
     <% if current_user.channels.include?(@channel) %>
+      <%= form_with model: [@channel, Message.new], data: { action: "turbo:submit-end->channel#clearMessage" } do |form| %>
+        <%= form.text_field :body, class: "form-control", data: { channel_target: "newMessage" } %>
+      <% end %>
     <% else %>
       <%= link_to "Join #{@channel.name}", channel_channel_user_path(@channel), data: {turbo_method: :post} %>
     <% end %>
