@@ -9,6 +9,13 @@ class ChannelsController < ApplicationController
 
   # GET /channels/1 or /channels/1.json
   def show
+    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    puts current_user.username
+    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    @channel_user = current_user.channel_users.find_by(channel: @channel)
+    @last_read_at = @channel_user&.last_read_at || @channel.created_at #이게 뭘까
+    @channel_user&.touch(:last_read_at) #이게 뭘까
+    # message_channel.rb에 touch를 def하긴 하는데 그거 아닐까?
   end
 
   # GET /channels/new
@@ -50,7 +57,8 @@ class ChannelsController < ApplicationController
 
   # DELETE /channels/1 or /channels/1.json
   def destroy
-    @channel.destroy!
+    #@channel.destroy!
+    @channel.destroy
 
     respond_to do |format|
       format.html { redirect_to channels_url, notice: "Channel was successfully destroyed." }

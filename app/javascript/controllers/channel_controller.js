@@ -5,7 +5,7 @@ import consumer from "channels/consumer"
 export default class extends Controller {
   static targets = ["messages", "newMessage"]
   connect() {
-    console.log("this.data.get.id:" + this.data.get("id"))
+    //console.log("this.data.get.id:" + this.data.get("id"))
 
     this.subscription = consumer.subscriptions.create({channel: "MessageChannel", id: this.data.get("id")}, {
       connected: this._connected.bind(this),
@@ -18,13 +18,20 @@ export default class extends Controller {
     consumer.subscriptions.remove(this.subscription)
   }
 
-  _connected(){}
+  _connected(){
+    this.scrollToBottom()
+  }
 
   _disconnected(){}
 
   _received(data){
     if(data.message){
       this.messagesTarget.insertAdjacentHTML('beforeend', data.message)
+      this.scrollToBottom()
+
+      if(!document.hidden){
+        this.subscription.perform("touch")
+      }
     }
   }
 
@@ -32,4 +39,7 @@ export default class extends Controller {
     this.newMessageTarget.value = ''
   }
 
+  scrollToBottom(){
+    window.scrollTo(0,document.body.scrollHeight)
+  }
 }
