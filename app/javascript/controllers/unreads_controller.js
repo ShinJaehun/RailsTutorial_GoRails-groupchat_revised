@@ -3,7 +3,6 @@ import consumer from "channels/consumer"
 //import { FetchRequest } from "@rails/request.js"
 
 export default class extends Controller {
-  static values={url: String}
   static targets=["mentions"]
   connect() {
     this.username=document.querySelector("meta[name='username']").getAttribute("content")
@@ -23,7 +22,7 @@ export default class extends Controller {
   _disconnected(){}
 
   _received(data){
-    console.log(data)
+    //console.log(data)
     this.element.classList.add("fw-bold")
 
     if(data.mention&&data.mention.includes(this.username)){
@@ -36,27 +35,28 @@ export default class extends Controller {
       console.log("count: " + count)
       this.mentionsTarget.textContent=count+1
       this.mentionsTarget.removeAttribute("hidden")
-      this.notify(data.mention, data.user, data.body)
+
+      //this.notify(data.mention, data.user, data.body)
     }
   }
 
-  async notify(to, from, message){
-    event.preventDefault()
-    console.log(this.urlValue)
-    const csrfToken = document.querySelector("[name='csrf-token']").content
+  //async notify(to, from, message){
+    //event.preventDefault()
+    //console.log(this.urlValue)
+    //const csrfToken = document.querySelector("[name='csrf-token']").content
 
-    fetch(this.urlValue, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': csrfToken
-      },
-      body: JSON.stringify({
-        to: to,
-        from: from,
-        message: message
-      })
-    })
+    //fetch(this.urlValue, {
+      //method: 'POST',
+      //headers: {
+        //'Content-Type': 'application/json',
+        //'X-CSRF-Token': csrfToken
+      //},
+      //body: JSON.stringify({
+        //to: to,
+        //from: from,
+        //message: message
+      //})
+    //})
     //.then(res => res.json())
     //.then(response => console.log('success:', JSON.stringify(response))
     //.catch(error => console.log('error:', error))
@@ -70,5 +70,5 @@ export default class extends Controller {
 //      console.log("notification 생성!")
 //      var notification = new Notification(message)
 //    }
-  }
+  //}
 }

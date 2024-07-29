@@ -25,7 +25,6 @@ export default class extends Controller {
   _disconnected(){}
 
   _received(data){
-    console.log(data)
     //console.log(this.messagesTarget)
     if(data.message){
       this.messagesTarget.insertAdjacentHTML('beforeend', data.message)
