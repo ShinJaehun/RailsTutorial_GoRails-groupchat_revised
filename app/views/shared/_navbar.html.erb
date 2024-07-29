@@ -31,6 +31,12 @@
         <% if user_signed_in? %>
           <%= yield :right_nav %>
 
+          <li class="nav-item">
+            <%= link_to notifications_path, class: "nav-link" do %>
+              <span><i class="far fa-bell" aria-hidden="true"></i></span>
+            <% end %>
+          </li>
+
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
               <%= current_user.username %> <span class="caret"></span>

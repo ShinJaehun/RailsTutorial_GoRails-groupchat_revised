@@ -4,7 +4,8 @@ class MessagesController < ApplicationController
 
   def create
     @message = @channel.messages.create(message_params)
-    MessageChannel.broadcast_to @channel, message: render_to_string(@message)
+    MessageChannel.broadcast_to @channel, { message: render_to_string(@message)}
+    #UnreadsChannel.broadcast_to @channel, { sender_id: current_user.id}
     UnreadsChannel.broadcast_to @channel, {}
   end
 

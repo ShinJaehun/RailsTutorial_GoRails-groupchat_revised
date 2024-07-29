@@ -29,6 +29,7 @@ class ChannelsController < ApplicationController
 
   # POST /channels or /channels.json
   def create
+    puts params
     @channel = Channel.new(channel_params)
 
     respond_to do |format|

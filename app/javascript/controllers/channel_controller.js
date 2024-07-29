@@ -25,6 +25,8 @@ export default class extends Controller {
   _disconnected(){}
 
   _received(data){
+    console.log(data)
+    //console.log(this.messagesTarget)
     if(data.message){
       this.messagesTarget.insertAdjacentHTML('beforeend', data.message)
       this.scrollToBottom()
@@ -40,7 +42,7 @@ export default class extends Controller {
   }
 
   scrollToBottom(){
-    console.log(document.body.scrollHeight)
+    //console.log(document.body.scrollHeight)
     window.scrollTo(0,document.body.scrollHeight)
   }
 }
